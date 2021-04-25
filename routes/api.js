@@ -1,10 +1,11 @@
 const router = require('express').Router();
 const Workout = require('../models/workout.js');
-const path = require('path');
+
 
 
 
 // Get all workouts 
+
 router.get('/api/workouts', (req, res) => {
     Workout.aggregate([{
         $addFields: {
@@ -17,7 +18,7 @@ router.get('/api/workouts', (req, res) => {
         }
     }])
         .then(workoutData => {
-            console.log('-----HELLO-----', workoutData);
+
             res.json(workoutData);
     })
         .catch(err => {
@@ -37,7 +38,7 @@ router.put('/api/workouts/:id', (req, res) => {
         new: true
     })
         .then((workoutData) => {
-            console.log('----hey----', workoutData); 
+
             res.json(workoutData);
         })
         .catch((err) => res.json(err));
@@ -46,11 +47,13 @@ router.put('/api/workouts/:id', (req, res) => {
 // Add New Workout to Database
 
 router.post('/api/workouts', (req, res) => {
-    console.log('we arrived')
+
     Workout.create({})
         .then((workoutData) => res.json(workoutData))
         .catch((err) => res.json(err));
 });
+
+// Get the last 7 days
 
 router.get('/api/workouts/range', (req, res) => {
     Workout.aggregate([{
@@ -62,7 +65,7 @@ router.get('/api/workouts/range', (req, res) => {
         .sort({day: -1})
         .limit(7)
         .then(workoutData => {
-            console.log(`range:${workoutData}`)
+
             res.json(workoutData);
         })
         .catch(err => {
