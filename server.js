@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const morgan = require('morgan');
+const logger = require('morgan');
 
 const PORT = process.env.PORT || 3050
 
@@ -8,7 +8,7 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(morgan('dev'))
+app.use(logger('dev'))
 
 // Serving Static Files
 app.use(express.static('public'));
@@ -16,7 +16,9 @@ app.use(express.static('public'));
 // Connects Mongoose
 mongoose.connect(process.env.MONODB_URI || 'mongodb://localhost/workouts', {
     useNewUrlParser: true,
-    useFindAndModify: false
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+    useCreateIndex: true 
 });
 
 // Set Routes
