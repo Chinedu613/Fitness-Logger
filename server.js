@@ -14,7 +14,7 @@ app.use(logger('dev'))
 app.use(express.static('public'));
 
 // Connects Mongoose
-mongoose.connect(process.env.MONODB_URI || 'mongodb://localhost/workouts', {
+mongoose.connect(process.env.MONODB_URI || 'mongodb://localhost/workout', {
     useNewUrlParser: true,
     useFindAndModify: false,
     useUnifiedTopology: true,
