@@ -29,9 +29,12 @@ router.get('/api/workouts', (req, res) => {
 // Get workouts by ID to Update
 
 router.put('/api/workouts/:id', (req, res) => {
+    
+    const body = req.body;
+
     Workout.findOneAndUpdate({ _id: req.params.id }, {
         $push: {
-            exercises: req.body 
+            exercises: { ...body } 
         }
     },
     {
