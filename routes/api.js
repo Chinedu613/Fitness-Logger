@@ -17,13 +17,8 @@ router.get('/api/workouts', (req, res) => {
             }
         }
     }])
-        .then(workoutData => {
-
-            res.json(workoutData);
-    })
-        .catch(err => {
-            res.status(400).json(err);
-        });
+        .then(workoutData => {res.json(workoutData)})
+        .catch(err => {res.status(400).json(err)});
 });
 
 // Get workouts by ID to Update
@@ -33,17 +28,10 @@ router.put('/api/workouts/:id', (req, res) => {
     const body = req.body;
 
     Workout.findOneAndUpdate({ _id: req.params.id }, {
-        $push: {
-            exercises: { ...body } 
-        }
+        $push: { exercises: { ...body } }
     },
-    {
-        new: true
-    })
-        .then((workoutData) => {
-
-            res.json(workoutData);
-        })
+    { new: true })
+        .then((workoutData) => { res.json(workoutData) })
         .catch((err) => res.json(err));
 });
 
