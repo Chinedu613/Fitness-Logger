@@ -24,7 +24,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', {
     console.log('Connected to Mongo Database')
 })
 .catch(err => {
-    console.error('App Error', err.stack)
+    console.error('Database Error', err.stack)
 })
 
 // Set Routes
