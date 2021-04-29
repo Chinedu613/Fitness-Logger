@@ -25,7 +25,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', {
 })
 .catch(err => {
     console.error('Database Error', err.stack)
-})
+});
 
 // Set Routes
 
