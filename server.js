@@ -19,7 +19,13 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', {
     useFindAndModify: false,
     useUnifiedTopology: true,
     useCreateIndex: true 
-});
+})
+.then(() => {
+    console.log('Connected to Mongo Database')
+})
+.catch(err => {
+    console.error('App Error', err.stack)
+})
 
 // Set Routes
 
